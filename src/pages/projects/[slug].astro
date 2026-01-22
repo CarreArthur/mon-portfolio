@@ -1,0 +1,143 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={project.title + " | Portfolio"}>
+  <main class="min-h-screen pb-32">
+    <section
+      class="px-6 md:px-12 pt-32 md:pt-48 pb-12 border-b border-theme-10"
+    >
+      <h1
+        class="text-[10vw] font-bold title-font uppercase leading-[0.85] -tighter mb-12 text-title"
+      >
+        {project.title}
+      </h1>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <p class="text-muted-50 uppercase text-xs mb-2">Client</p>
+          {
+            project.clientLogo ? (
+              <Image
+                src={project.clientLogo}
+                alt={project.client}
+                height={32}
+                loading="lazy"
+                class="h-8 w-auto object-contain opacity-90"
+              />
+            ) : (
+              <p>{project.client}</p>
+            )
+          }
+        </div>
+
+        <div>
+          <p class="text-muted-50 uppercase text-xs mb-2">Rôle</p>
+          <p>{project.role}</p>
+        </div>
+
+        <div>
+          <p class="text-muted-50 uppercase text-xs mb-2">Année</p>
+          <p>{project.year}</p>
+        </div>
+
+        {
+          project.website && (
+            <div>
+              <p class="text-muted-50 uppercase text-xs mb-2">Projet</p>
+              <a
+                href={project.website}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="inline-flex items-center gap-2 text-xs font-semibold uppercase border-b border-theme text-title hover:text-muted transition-colors"
+              >
+                Voir le projet
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <section class="px-6 md:px-12 py-12 md:py-24 grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-4 h-fit md:sticky md:top-32">
+        <h2 class="text-xs uppercase text-muted-50 mb-6 title-font text-title">
+          À propos du projet
+        </h2>
+
+        <p class="text-xl leading-relaxed font-medium mb-8">
+          {project.description}
+        </p>
+
+        {
+          project.website && (
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noreferrer noopener"
+              class="inline-flex items-center gap-2 text-xs font-bold uppercase title-font border border-theme-20 px-4 py-2 rounded-full text-title hover:bg-title hover:text-background transition-colors mb-8"
+            >
+              Voir le projet en ligne
+            </a>
+          )
+        }
+
+        {
+          project.technologies && project.technologies.length > 0 && (
+            <div class="mb-12">
+              <h3 class="text-xs uppercase text-muted-50 mb-4 title-font text-title">
+                Technologies
+              </h3>
+              <div class="flex flex-wrap gap-4">
+                {project.technologies.map((tech) => (
+                  <div class="group relative" title={tech.name}>
+                    <Image
+                      src={tech.icon}
+                      alt={tech.name}
+                      width={32}
+                      height={32}
+                      loading="lazy"
+                      class="w-8 h-8 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 hover:grayscale-0"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        <a
+          href="/work"
+          class="block text-xs uppercase font-bold title-font border-b border-theme w-fit text-title hover:text-muted transition-colors"
+        >
+          ← Retour aux projets
+        </a>
+      </div>
+
+      <div class="md:col-span-8 flex flex-col gap-8">
+        {
+          project.gallery.map((img) => (
+            <Image
+              src={img}
+              alt={project.title}
+              loading="lazy"
+              width={1200}
+              class="w-full h-auto object-cover bg-panel"
+            />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

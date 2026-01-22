@@ -1,0 +1,204 @@
+---
+import { Menu, X, Linkedin } from "lucide-astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const isActive = (path: string) => {
+  if (path === "/") return pathname === "/";
+  return pathname.startsWith(path);
+};
+
+const navLinks = [
+  { label: "MES PROJETS", path: "/work" },
+  { label: "À PROPOS", path: "/about" },
+];
+---
+
+<header
+  class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300 mix-blend-normal"
+  id="main-header"
+>
+  <div
+    class="absolute inset-0 bg-[#E0FF4F] border-b border-theme-10 shadow-sm z-0"
+  >
+  </div>
+
+  <div class="z-50 relative">
+    <a
+      href="/"
+      class="text-xl font-bold title-font uppercase -tighter leading-none group text-[#00272B]"
+    >
+      Arthur Carré
+    </a>
+  </div>
+
+  <nav class="hidden md:block z-50 relative">
+    <ul class="flex gap-10 text-sm font-bold uppercase">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.path}
+              class={`transition-colors duration-300 ${
+                isActive(link.path)
+                  ? "text-[#00272B]"
+                  : "text-[#00272B] hover:opacity-80"
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <button
+    id="burger-btn"
+    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-[#00272B]"
+    aria-label="Menu"
+  >
+    <div class="icon-menu absolute inset-0 flex items-center justify-center">
+      <Menu class="w-8 h-8" />
+    </div>
+
+    <div
+      class="icon-close absolute inset-0 flex items-center text-[#E0FF4F] justify-center opacity-0 scale-50"
+    >
+      <X class="w-8 h-8" />
+    </div>
+  </button>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-theme z-40 flex flex-col items-center justify-between px-6 py-12 translate-x-full transition-none md:hidden"
+  >
+    <div class="flex-1"></div>
+
+    <nav
+      class="flex flex-col gap-10 w-full max-w-lg mx-auto justify-center items-center"
+    >
+      {
+        navLinks.map((link, index) => (
+          <a
+            href={link.path}
+            class="mobile-link group flex items-start gap-6 opacity-0 translate-y-10 w-full justify-center"
+          >
+            <span class="font-mono text-[#E0FF4F] text-lg md:text-xl mt-2 md:mt-4">
+              0{index + 1}
+            </span>
+
+            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#E0FF4F] group-hover:text-white transition-colors duration-300">
+              {link.label}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex-1 flex items-end justify-center w-full pb-8">
+      <a
+        href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
+        target="_blank"
+        class="social-link opacity-0 translate-y-4 hover:text-white hover:scale-110 transition-all duration-300"
+      >
+        <Linkedin class="w-10 h-10 text-[#E0FF4F]" stroke-width="1.5" />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import gsap from "gsap";
+
+  const burgerBtn = document.getElementById("burger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  const socialLink = document.querySelector(".social-link");
+
+  const iconMenu = burgerBtn?.querySelector(".icon-menu");
+  const iconClose = burgerBtn?.querySelector(".icon-close");
+
+  let isMenuOpen = false;
+
+  burgerBtn?.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      // --- OUVERTURE ---
+
+      // 1. Swap icônes
+      if (iconMenu && iconClose) {
+        gsap.to(iconMenu, {
+          opacity: 0,
+          rotation: 90,
+          scale: 0.5,
+          duration: 0.3,
+        });
+        gsap.to(iconClose, {
+          opacity: 1,
+          rotation: 0,
+          scale: 1,
+          duration: 0.3,
+        });
+      }
+
+      // 2. Panneau
+      gsap.to(mobileMenu, { x: "0%", duration: 0.5, ease: "power3.inOut" });
+
+      // 3. Liens Nav
+      gsap.to(mobileLinks, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        delay: 0.2,
+        ease: "power2.out",
+      });
+
+      // 4. Icône Linkedin (apparait après les liens)
+      if (socialLink) {
+        gsap.to(socialLink, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: 0.4,
+          ease: "back.out(1.7)",
+        });
+      }
+
+      document.body.style.overflow = "hidden";
+    } else {
+      // --- FERMETURE ---
+
+      // 1. Swap icônes
+      if (iconMenu && iconClose) {
+        gsap.to(iconMenu, { opacity: 1, rotation: 0, scale: 1, duration: 0.3 });
+        gsap.to(iconClose, {
+          opacity: 0,
+          rotation: -90,
+          scale: 0.5,
+          duration: 0.3,
+        });
+      }
+
+      // 2. Panneau
+      gsap.to(mobileMenu, { x: "100%", duration: 0.5, ease: "power3.inOut" });
+
+      // 3. Reset positions
+      gsap.to(mobileLinks, { opacity: 0, y: 10, duration: 0.2 });
+
+      if (socialLink) {
+        gsap.to(socialLink, { opacity: 0, y: 10, duration: 0.2 });
+      }
+
+      document.body.style.overflow = "";
+    }
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMenuOpen) burgerBtn?.click();
+    });
+  });
+</script>

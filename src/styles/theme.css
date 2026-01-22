@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700&display=swap');
+
+:root{
+  --color-bg:#00272B;
+  --color-title:#E0FF4F;
+  --color-text:#FFFFFF;
+
+  /* RGB variants for transparencies */
+  --color-bg-rgb: 0, 39, 43;
+  --color-title-rgb: 224, 255, 79;
+  --color-text-rgb: 255, 255, 255;
+
+  --font-title: 'Oswald', sans-serif;
+  --font-body: 'Inter', serif;
+}
+
+html, body{
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+::selection{
+  background: var(--color-title);
+  color: var(--color-bg);
+}
+
+a{ color: var(--color-title); }
+a:hover{ opacity: .85; }
+
+/* Utility classes used in templates (works alongside Tailwind classes) */
+.bg-theme{ background: var(--color-bg); }
+.text-theme{ color: var(--color-text); }
+.text-title{ color: var(--color-title); }
+
+.title-font{ font-family: var(--font-title); font-weight: 700; }
+.body-font{ font-family: var(--font-body); }
+
+.text-muted{ color: rgba(var(--color-text-rgb), 0.72); }
+.text-muted-60{ color: rgba(var(--color-text-rgb), 0.60); }
+.text-muted-50{ color: rgba(var(--color-text-rgb), 0.50); }
+.text-muted-40{ color: rgba(var(--color-text-rgb), 0.40); }
+
+.border-theme{ border-color: rgba(var(--color-text-rgb), 0.18); }
+.border-theme-20{ border-color: rgba(var(--color-text-rgb), 0.20); }
+.border-theme-10{ border-color: rgba(var(--color-text-rgb), 0.10); }
+
+.bg-panel{ background-color: rgba(var(--color-text-rgb), 0.06); }
+.bg-panel-10{ background-color: rgba(var(--color-text-rgb), 0.10); }
+.bg-accent-10{ background-color: rgba(var(--color-title-rgb), 0.10); }

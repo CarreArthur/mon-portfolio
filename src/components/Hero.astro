@@ -1,0 +1,186 @@
+---
+import webPreview from "../images/web.png";
+import { School, Briefcase, CircleArrowRight } from "lucide-astro";
+
+const devImage = webPreview.src;
+const marketingImage =
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop";
+---
+
+<section
+  class="relative w-full overflow-hidden text-theme px-6 sm:px-10 md:px-16 py-12 md:py-12"
+>
+  <div
+    class="absolute inset-0 pointer-events-none opacity-[0.07] z-0 mix-blend-multiply"
+    style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"
+  >
+  </div>
+
+  <div
+    id="hover-image"
+    class="fixed top-0 left-0 w-[250px] h-[160px] md:w-[350px] md:h-[240px] rounded-xl overflow-hidden pointer-events-none opacity-0 z-50 hidden lg:block"
+    style="transform: translate(-50%, -50%) scale(0.8);"
+  >
+    <img src="" alt="Preview" class="w-full h-full object-cover" />
+  </div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col">
+    <div class="flex-1 flex flex-col justify-center py-24">
+      <div class="space-y-3 md:space-y-6">
+        <div
+          class="hero-line block group cursor-pointer w-fit overflow-hidden pb-2"
+          data-img={devImage}
+        >
+          <h1
+            class="text-6xl sm:text-7xl md:text-8xl lg:text-[11vw] font-bold title-font uppercase leading-[0.9] md:leading-[0.85] select-none transition-colors duration-300 group-hover:text-title origin-bottom-left"
+          >
+            Web Dev
+          </h1>
+        </div>
+
+        <div
+          class="hero-line flex items-baseline group cursor-pointer w-fit overflow-hidden pb-2"
+          data-img={marketingImage}
+        >
+          <h1
+            class="text-6xl sm:text-7xl md:text-8xl lg:text-[11vw] font-bold title-font uppercase leading-[0.9] md:leading-[0.85] select-none pl-4 md:pl-[5vw] text-title/40 transition-colors duration-300 group-hover:text-title/80 origin-bottom-left"
+          >
+            <span class="text-[#E0FF4F]">&</span> Marketing
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 border-t border-theme-10 pt-8 pb-2 items-center w-full opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"
+    >
+      <div
+        class="col-span-1 lg:col-span-8 flex flex-col sm:flex-row gap-8 sm:gap-16"
+      >
+        <div class="flex items-center gap-4 group/item">
+          <div
+            class="p-3 rounded-full bg-accent-10 text-title group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+          >
+            <School class="w-5 h-5 md:w-6 md:h-6" />
+          </div>
+          <div>
+            <p class="text-[10px] uppercase opacity-60 mb-0.5">Formation</p>
+            <p class="font-medium text-base leading-tight">
+              BUT MMI <span class="text-title font-bold">Dév Web</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 group/item">
+          <div
+            class="p-3 rounded-full bg-accent-10 text-title group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+          >
+            <Briefcase class="w-5 h-5 md:w-6 md:h-6" />
+          </div>
+          <div>
+            <p class="text-[10px] uppercase opacity-60 mb-0.5">Alternance</p>
+            <p class="font-medium text-base leading-tight">
+              Assistant <span class="text-title font-bold">WebMarketing</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-span-1 lg:col-span-4 flex items-center justify-start lg:justify-end"
+      >
+        <a
+          href="/work"
+          class="group flex items-center gap-3 uppercase text-sm font-bold hover:text-title transition-colors"
+        >
+          Mes projets
+          <span
+            class="bg-accent-10 text-title rounded-full p-2.5 group-hover:bg-[#E0FF4F] group-hover:text-[#00272B] group-hover:rotate-[-45deg] transition-all duration-300"
+          >
+            <CircleArrowRight class="w-4 h-4" />
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+
+  // --- Animation d'entrée des titres ---
+  const titles = document.querySelectorAll(".hero-line h1");
+
+  gsap.from(titles, {
+    y: "120%", // Descend le texte hors de son conteneur (masqué par overflow-hidden)
+    skewY: 7, // Ajoute une inclinaison stylée
+    duration: 1.5,
+    stagger: 0.15, // Délai entre le premier et le deuxième titre
+    ease: "power4.out",
+  });
+  // -------------------------------------
+
+  const hoverImageContainer = document.getElementById("hover-image");
+  const hoverImage = hoverImageContainer?.querySelector("img");
+  const lines = document.querySelectorAll(".hero-line");
+
+  const moveImage = (e: MouseEvent) => {
+    if (!hoverImageContainer) return;
+
+    gsap.to(hoverImageContainer, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+  };
+
+  window.addEventListener("mousemove", moveImage);
+
+  lines.forEach((line) => {
+    line.addEventListener("mouseenter", () => {
+      const imgUrl = line.getAttribute("data-img");
+      if (hoverImage && imgUrl && hoverImageContainer) {
+        hoverImage.src = imgUrl;
+
+        gsap.to(hoverImageContainer, {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "back.out(1.5)",
+          overwrite: "auto",
+        });
+
+        gsap.to(hoverImageContainer, {
+          rotation: Math.random() * 6 - 3,
+          duration: 0.4,
+        });
+      }
+    });
+
+    line.addEventListener("mouseleave", () => {
+      if (hoverImageContainer) {
+        gsap.to(hoverImageContainer, {
+          autoAlpha: 0,
+          scale: 0.5,
+          duration: 0.3,
+          ease: "power2.in",
+          overwrite: "auto",
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

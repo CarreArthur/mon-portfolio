@@ -1,0 +1,40 @@
+---
+import { Linkedin } from "lucide-astro";
+---
+
+<footer class="bg-[#E0FF4F] text-[#00272B] font-sans flex flex-col mt-auto">
+  <div class="flex flex-col items-center justify-center py-16 px-4 gap-8">
+    <div class="text-3xl md:text-4xl font-black uppercase">ARTHUR CARRÉ</div>
+
+    <nav
+      class="flex flex-wrap justify-center gap-8 md:gap-12 text-sm font-bold uppercase"
+    >
+      <a
+        href="/projets"
+        class="hover:opacity-60 transition-opacity duration-300 text-[#00272B]"
+      >
+        MES PROJETS
+      </a>
+      <a
+        href="/apropos"
+        class="hover:opacity-60 transition-opacity duration-300 text-[#00272B]"
+      >
+        À PROPOS
+      </a>
+    </nav>
+
+    <a
+      href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hover:scale-110 transition-transform duration-300 text-[#00272B]"
+      aria-label="LinkedIn"
+    >
+      <Linkedin />
+    </a>
+  </div>
+
+  <div class="bg-[#00272B] text-[#E0FF4F] py-4 text-center text-xs uppercase">
+    <p>© 2025 Arthur Carré — All Rights Reserved</p>
+  </div>
+</footer>
