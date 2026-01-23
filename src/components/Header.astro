@@ -8,9 +8,11 @@ const isActive = (path: string) => {
   return pathname.startsWith(path);
 };
 
+const cvPath = "/src/images/Cv-Arthur.pdf";
+
 const navLinks = [
   { label: "MES PROJETS", path: "/work" },
-  { label: "À PROPOS", path: "/about" },
+  { label: "MON CV", path: cvPath },
 ];
 ---
 
@@ -33,17 +35,20 @@ const navLinks = [
   </div>
 
   <nav class="hidden md:block z-50 relative">
-    <ul class="flex gap-10 text-sm font-bold uppercase">
+    <ul class="flex items-center gap-10 text-sm font-bold uppercase">
       {
         navLinks.map((link) => (
-          <li>
+          <li class="flex items-center">
             <a
               href={link.path}
-              class={`transition-colors duration-300 ${
-                isActive(link.path)
-                  ? "text-[#00272B]"
-                  : "text-[#00272B] hover:opacity-80"
+              class={`transition-all duration-300 text-[#00272B] ${
+                isActive(link.path) ? "" : "hover:opacity-80"
+              } ${
+                link.path === cvPath
+                  ? "border border-[#00272B] rounded-full px-4 py-2 hover:bg-[#00272B] hover:text-[#E0FF4F]"
+                  : ""
               }`}
+              download={link.path === cvPath}
             >
               {link.label}
             </a>
@@ -83,6 +88,7 @@ const navLinks = [
           <a
             href={link.path}
             class="mobile-link group flex items-start gap-6 opacity-0 translate-y-10 w-full justify-center"
+            download={link.path === cvPath}
           >
             <span class="font-mono text-[#E0FF4F] text-lg md:text-xl mt-2 md:mt-4">
               0{index + 1}
@@ -126,8 +132,6 @@ const navLinks = [
 
     if (isMenuOpen) {
       // --- OUVERTURE ---
-
-      // 1. Swap icônes
       if (iconMenu && iconClose) {
         gsap.to(iconMenu, {
           opacity: 0,
@@ -143,10 +147,8 @@ const navLinks = [
         });
       }
 
-      // 2. Panneau
       gsap.to(mobileMenu, { x: "0%", duration: 0.5, ease: "power3.inOut" });
 
-      // 3. Liens Nav
       gsap.to(mobileLinks, {
         opacity: 1,
         y: 0,
@@ -156,7 +158,6 @@ const navLinks = [
         ease: "power2.out",
       });
 
-      // 4. Icône Linkedin (apparait après les liens)
       if (socialLink) {
         gsap.to(socialLink, {
           opacity: 1,
@@ -170,8 +171,6 @@ const navLinks = [
       document.body.style.overflow = "hidden";
     } else {
       // --- FERMETURE ---
-
-      // 1. Swap icônes
       if (iconMenu && iconClose) {
         gsap.to(iconMenu, { opacity: 1, rotation: 0, scale: 1, duration: 0.3 });
         gsap.to(iconClose, {
@@ -182,10 +181,8 @@ const navLinks = [
         });
       }
 
-      // 2. Panneau
       gsap.to(mobileMenu, { x: "100%", duration: 0.5, ease: "power3.inOut" });
 
-      // 3. Reset positions
       gsap.to(mobileLinks, { opacity: 0, y: 10, duration: 0.2 });
 
       if (socialLink) {

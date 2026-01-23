@@ -1,5 +1,7 @@
 ---
 import { Linkedin } from "lucide-astro";
+
+const cvPath = "/src/images/Cv-Arthur.pdf";
 ---
 
 <footer class="bg-[#E0FF4F] text-[#00272B] font-sans flex flex-col mt-auto">
@@ -7,7 +9,7 @@ import { Linkedin } from "lucide-astro";
     <div class="text-3xl md:text-4xl font-black uppercase">ARTHUR CARRÉ</div>
 
     <nav
-      class="flex flex-wrap justify-center gap-8 md:gap-12 text-sm font-bold uppercase"
+      class="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-sm font-bold uppercase"
     >
       <a
         href="/projets"
@@ -15,11 +17,13 @@ import { Linkedin } from "lucide-astro";
       >
         MES PROJETS
       </a>
+
       <a
-        href="/apropos"
-        class="hover:opacity-60 transition-opacity duration-300 text-[#00272B]"
+        href={cvPath}
+        download
+        class="border border-[#00272B] rounded-full px-4 py-2 transition-all duration-300 text-[#00272B] hover:bg-[#00272B] hover:text-[#E0FF4F]"
       >
-        À PROPOS
+        MON CV
       </a>
     </nav>
 
