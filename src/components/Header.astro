@@ -8,11 +8,12 @@ const isActive = (path: string) => {
   return pathname.startsWith(path);
 };
 
-const cvPath = "/src/images/Cv-Arthur.pdf";
+// ✅ CV accessible depuis /public
+const cvPath = "/Cv-Arthur.pdf";
 
 const navLinks = [
   { label: "MES PROJETS", path: "/work" },
-  { label: "MON CV", path: "/src/images/Cv-Arthur.pdf" },
+  { label: "MON CV", path: cvPath },
 ];
 ---
 
