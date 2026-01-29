@@ -29,7 +29,7 @@ const navLinks = [
   <div class="z-50 relative">
     <a
       href="/"
-      class="text-xl font-bold title-font uppercase -tighter leading-none group text-[#1E1E1E]"
+      class="text-xl font-bold title-font uppercase -tighter leading-none group text-[#1E1E1E] transition-transform duration-300 hover:scale-[1.02]"
     >
       Arthur Carré
     </a>
@@ -42,11 +42,11 @@ const navLinks = [
           <li class="flex items-center">
             <a
               href={link.path}
-              class={`transition-all duration-300 ${
-                isActive(link.path) ? "" : "hover:opacity-80"
+              class={`nav-link transition-all duration-300 ${
+                isActive(link.path) ? "is-active" : ""
               } ${
                 link.path === cvPath
-                  ? "border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2 hover:bg-[#1E1E1E] hover:text-[#FFFFFF]"
+                  ? "border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2"
                   : "text-[#1E1E1E]"
               }`}
               download={link.path === cvPath}
@@ -61,7 +61,7 @@ const navLinks = [
 
   <button
     id="burger-btn"
-    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-[#1E1E1E]"
+    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-[#1E1E1E] transition-transform duration-300 hover:scale-110"
     aria-label="Menu"
   >
     <div class="icon-menu absolute inset-0 flex items-center justify-center">
@@ -95,11 +95,7 @@ const navLinks = [
               0{index + 1}
             </span>
 
-            <span
-              class={`text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] group-hover:text-white transition-colors duration-300 ${
-                link.path === cvPath ? "text-[#1E1E1E]" : "text-[#1E1E1E]"
-              }`}
-            >
+            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#1E1E1E] group-hover:text-white transition-colors duration-300">
               {link.label}
             </span>
           </a>
@@ -111,7 +107,7 @@ const navLinks = [
       <a
         href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
         target="_blank"
-        class="social-link opacity-0 translate-y-4 hover:text-white hover:scale-110 transition-all duration-300"
+        class="social-link opacity-0 translate-y-4 transition-all duration-300 hover:scale-110"
       >
         <Linkedin class="w-10 h-10 text-[#1E1E1E]" stroke-width="1.5" />
       </a>
@@ -204,3 +200,79 @@ const navLinks = [
     });
   });
 </script>
+
+<style>
+  /* Hover UX/UI des liens desktop (underline animé) */
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transform: translateZ(0);
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 3px;
+    width: 100%;
+    background: #1e1e1e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+    border-radius: 999px;
+    opacity: 0.9;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Petit effet "lift" au hover */
+  .nav-link:hover {
+    transform: translateY(-2px);
+  }
+
+  /* État actif: underline visible */
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* ----------------------------- */
+  /* MON CV : hover plus discret   */
+  /* ----------------------------- */
+
+  /* Pas d'underline animé pour le bouton CV */
+  .nav-link.border::after,
+  .nav-link.border:hover::after,
+  .nav-link.border.is-active::after {
+    display: none;
+  }
+
+  /* Pas de "lift" global sur le bouton CV */
+  .nav-link.border:hover {
+    transform: none;
+  }
+
+  /* Remplace par un effet subtil */
+  .nav-link.border {
+    box-shadow: none;
+    transition:
+      background-color 200ms ease,
+      filter 200ms ease,
+      opacity 200ms ease;
+  }
+
+  .nav-link.border:hover {
+    background-color: #2a2a2a;
+    filter: brightness(1.05);
+  }
+
+  /* Focus clavier propre */
+  .nav-link.border:focus-visible {
+    outline: 2px solid rgba(192, 240, 0, 0.9);
+    outline-offset: 3px;
+  }
+</style>

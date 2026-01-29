@@ -72,10 +72,10 @@ const { project } = Astro.props;
                 href={project.website}
                 target="_blank"
                 rel="noreferrer noopener"
-                class="inline-flex items-center gap-2 text-xs font-semibold uppercase border-b transition-colors"
-                style="border-bottom-color:#C0F000;color:#1E1E1E;"
+                class="project-link inline-flex items-center gap-2 text-xs font-semibold uppercase"
+                style="color:#1E1E1E;"
               >
-                Voir le projet
+                Voir le projet <span class="arrow">→</span>
               </a>
             </div>
           )
@@ -119,17 +119,19 @@ const { project } = Astro.props;
               >
                 Technologies
               </h3>
+
               <div class="flex flex-wrap gap-4">
                 {project.technologies.map((tech) => (
-                  <div class="group relative" title={tech.name}>
+                  <div class="tech" title={tech.name}>
                     <Image
                       src={tech.icon}
                       alt={tech.name}
                       width={32}
                       height={32}
                       loading="lazy"
-                      class="w-8 h-8 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 hover:grayscale-0"
+                      class="w-8 h-8 object-contain opacity-70 transition-opacity duration-200"
                     />
+                    <span class="tech-label">{tech.name}</span>
                   </div>
                 ))}
               </div>
@@ -139,8 +141,8 @@ const { project } = Astro.props;
 
         <a
           href="/work"
-          class="block text-xs uppercase font-bold title-font border-b w-fit transition-colors"
-          style="border-bottom-color:#C0F000;color:#1E1E1E;"
+          class="back-link block text-xs uppercase font-bold title-font w-fit"
+          style="color:#1E1E1E;"
         >
           ← Retour aux projets
         </a>
@@ -162,3 +164,140 @@ const { project } = Astro.props;
     </section>
   </main>
 </Layout>
+
+<style>
+  /* ----------------------------- */
+  /* Hover "Voir le projet" (pro)  */
+  /* ----------------------------- */
+  .project-link {
+    position: relative;
+    padding-bottom: 4px;
+    transition: opacity 200ms ease;
+  }
+
+  .project-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 2px;
+    background: #c0f000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms ease;
+    border-radius: 999px;
+    opacity: 0.95;
+  }
+
+  .project-link:hover {
+    opacity: 0.92;
+  }
+
+  .project-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .project-link .arrow {
+    transition: transform 240ms ease;
+  }
+
+  .project-link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ------------------------------------ */
+  /* Tech logos : afficher le nom au hover */
+  /* ------------------------------------ */
+  .tech {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech:hover img {
+    opacity: 1;
+  }
+
+  .tech-label {
+    position: absolute;
+    left: 50%;
+    top: -12px;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background: rgba(30, 30, 30, 0.92);
+    color: #ffffff;
+
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .tech:hover .tech-label {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 4px));
+  }
+
+  .tech-label::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(30, 30, 30, 0.92);
+  }
+
+  /* ------------------------------------ */
+  /* Hover "Retour aux projets" (pareil)  */
+  /* ------------------------------------ */
+  .back-link {
+    position: relative;
+    padding-bottom: 4px;
+    opacity: 0.9;
+    transition: opacity 200ms ease;
+  }
+
+  .back-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 2px;
+    background: #c0f000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms ease;
+    border-radius: 999px;
+    opacity: 0.95;
+  }
+
+  .back-link:hover {
+    opacity: 1;
+  }
+
+  .back-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Focus clavier */
+  .project-link:focus-visible,
+  .back-link:focus-visible {
+    outline: 2px solid rgba(192, 240, 0, 0.9);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+</style>

@@ -26,7 +26,7 @@ const cvPath = "/Cv-Arthur.pdf";
     >
       <a
         href="/work"
-        class="transition-all duration-300 text-[#1E1E1E] hover:opacity-80"
+        class="footer-link transition-all duration-300 text-[#1E1E1E] hover:opacity-80"
       >
         MES PROJETS
       </a>
@@ -34,7 +34,7 @@ const cvPath = "/Cv-Arthur.pdf";
       <a
         href={cvPath}
         download
-        class="border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2 hover:bg-[#1E1E1E] hover:text-[#FFFFFF] transition-all duration-300"
+        class="footer-link footer-cta border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2 transition-all duration-300"
       >
         TÉLÉCHARGER MON CV
       </a>
@@ -44,17 +44,112 @@ const cvPath = "/Cv-Arthur.pdf";
       href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
       target="_blank"
       rel="noopener noreferrer"
-      class="hover:scale-110 transition-transform duration-300 text-[#1E1E1E]"
+      class="footer-social transition-all duration-300 text-[#1E1E1E]"
       aria-label="LinkedIn"
     >
       <Linkedin class="w-10 h-10 text-[#1E1E1E]" stroke-width="1.5" />
     </a>
   </div>
 
-  {/* Barre du bas dans le même esprit (même fond, séparation) */}
+  {/* Barre du bas */}
   <div
     class="relative z-10 border-t border-theme-10 bg-[#1E1E1E] text-[#FFFFFF] py-4 text-center text-xs uppercase"
   >
     <p>© 2026 Arthur Carré — Tous droits réservés</p>
   </div>
 </footer>
+
+<style>
+  /* Underline animé comme le header */
+  .footer-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    transform: translateZ(0);
+  }
+
+  .footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 3px;
+    width: 100%;
+    background: #1e1e1e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+    border-radius: 999px;
+    opacity: 0.9;
+  }
+
+  .footer-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .footer-link:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ----------------------------- */
+  /* CTA (CV) : hover plus discret */
+  /* ----------------------------- */
+
+  /* Pas d'underline animé sur le bouton */
+  .footer-cta::after,
+  .footer-cta:hover::after {
+    display: none;
+  }
+
+  /* Pas de "lift" global sur le CTA */
+  .footer-cta:hover {
+    transform: none;
+  }
+
+  /* Effet subtil (pro) */
+  .footer-cta {
+    box-shadow: none;
+    transition:
+      background-color 200ms ease,
+      filter 200ms ease,
+      opacity 200ms ease;
+  }
+
+  .footer-cta:hover {
+    background-color: #2a2a2a;
+    filter: brightness(1.05);
+  }
+
+  .footer-cta:focus-visible {
+    outline: 2px solid rgba(192, 240, 0, 0.9);
+    outline-offset: 3px;
+  }
+
+  /* ----------------------------- */
+  /* LinkedIn : plus pro / discret */
+  /* ----------------------------- */
+
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease,
+      filter 200ms ease;
+  }
+
+  /* Plus de rotation, juste un micro feedback */
+  .footer-social:hover {
+    transform: scale(1.04);
+    filter: brightness(0.95);
+    opacity: 0.95;
+  }
+
+  .footer-social:focus-visible {
+    outline: 2px solid rgba(30, 30, 30, 0.9);
+    outline-offset: 4px;
+    border-radius: 999px;
+  }
+</style>
