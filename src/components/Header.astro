@@ -22,14 +22,14 @@ const navLinks = [
   id="main-header"
 >
   <div
-    class="absolute inset-0 bg-[#E0FF4F] border-b border-theme-10 shadow-sm z-0"
+    class="absolute inset-0 bg-[#C0F000] border-b border-theme-10 shadow-sm z-0"
   >
   </div>
 
   <div class="z-50 relative">
     <a
       href="/"
-      class="text-xl font-bold title-font uppercase -tighter leading-none group text-[#00272B]"
+      class="text-xl font-bold title-font uppercase -tighter leading-none group text-[#1E1E1E]"
     >
       Arthur Carré
     </a>
@@ -42,12 +42,12 @@ const navLinks = [
           <li class="flex items-center">
             <a
               href={link.path}
-              class={`transition-all duration-300 text-[#00272B] ${
+              class={`transition-all duration-300 ${
                 isActive(link.path) ? "" : "hover:opacity-80"
               } ${
                 link.path === cvPath
-                  ? "border border-[#00272B] rounded-full px-4 py-2 hover:bg-[#00272B] hover:text-[#E0FF4F]"
-                  : ""
+                  ? "border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2 hover:bg-[#1E1E1E] hover:text-[#FFFFFF]"
+                  : "text-[#1E1E1E]"
               }`}
               download={link.path === cvPath}
             >
@@ -61,7 +61,7 @@ const navLinks = [
 
   <button
     id="burger-btn"
-    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-[#00272B]"
+    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-[#1E1E1E]"
     aria-label="Menu"
   >
     <div class="icon-menu absolute inset-0 flex items-center justify-center">
@@ -69,7 +69,7 @@ const navLinks = [
     </div>
 
     <div
-      class="icon-close absolute inset-0 flex items-center text-[#E0FF4F] justify-center opacity-0 scale-50"
+      class="icon-close absolute inset-0 flex items-center text-[#1E1E1E] justify-center opacity-0 scale-50"
     >
       <X class="w-8 h-8" />
     </div>
@@ -91,11 +91,15 @@ const navLinks = [
             class="mobile-link group flex items-start gap-6 opacity-0 translate-y-10 w-full justify-center"
             download={link.path === cvPath}
           >
-            <span class="font-mono text-[#E0FF4F] text-lg md:text-xl mt-2 md:mt-4">
+            <span class="font-mono text-[#C0F000] text-lg md:text-xl mt-2 md:mt-4">
               0{index + 1}
             </span>
 
-            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#E0FF4F] group-hover:text-white transition-colors duration-300">
+            <span
+              class={`text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] group-hover:text-white transition-colors duration-300 ${
+                link.path === cvPath ? "text-[#1E1E1E]" : "text-[#1E1E1E]"
+              }`}
+            >
               {link.label}
             </span>
           </a>
@@ -109,7 +113,7 @@ const navLinks = [
         target="_blank"
         class="social-link opacity-0 translate-y-4 hover:text-white hover:scale-110 transition-all duration-300"
       >
-        <Linkedin class="w-10 h-10 text-[#E0FF4F]" stroke-width="1.5" />
+        <Linkedin class="w-10 h-10 text-[#1E1E1E]" stroke-width="1.5" />
       </a>
     </div>
   </div>

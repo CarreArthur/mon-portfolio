@@ -26,21 +26,27 @@ const { title, category, year, image, tags, slug } = Astro.props;
     />
 
     <div
-      class="absolute inset-0 bg-theme/0 group-hover:bg-theme/10 transition-colors duration-500"
+      class="absolute inset-0 transition-colors duration-500"
+      style="background-color: transparent;"
     >
     </div>
   </div>
 
-  <div class="flex flex-col gap-3 border-t border-theme-10 pt-4">
+  <div
+    class="flex flex-col gap-3 border-t pt-4"
+    style="border-top-color:#C0F000;"
+  >
     <div class="flex justify-between items-start">
       <h3
-        class="text-2xl md:text-3xl font-bold title-font uppercase -tighter text-theme transition-colors duration-300 group-hover:text-title"
+        class="text-2xl md:text-3xl font-bold title-font uppercase -tighter transition-colors duration-300"
+        style="color:#1E1E1E;"
       >
         {title}
       </h3>
 
       <span
-        class="text-title opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+        class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+        style="color:#C0F000;"
       >
         <MoveUpRight class="w-5 h-5" />
       </span>
@@ -48,25 +54,41 @@ const { title, category, year, image, tags, slug } = Astro.props;
 
     <div class="flex justify-between items-end mt-1">
       <div>
-        <p class="text-sm font-bold uppercase text-title mb-1">
+        <p
+          class="text-sm font-bold uppercase mb-1 transition-colors duration-300"
+          style="color:#1E1E1E;"
+        >
           {category}
         </p>
-        <span class="text-xs font-mono text-theme/50">
+        <span class="text-xs font-mono" style="color: rgba(30,30,30,0.55);">
           ({year})
         </span>
       </div>
 
       <div class="flex gap-2">
         {
-          tags
-            .slice(0, 3)
-            .map((tag) => (
-              <span class="hidden md:inline-block text-[10px] uppercase -wider border border-theme-20 px-2 py-1 rounded-full text-theme/60 group-hover:opacity-90 group-hover:text-title transition-colors duration-300">
-                {tag}
-              </span>
-            ))
+          tags.slice(0, 3).map((tag) => (
+            <span
+              class="hidden md:inline-block text-[10px] uppercase -wider px-2 py-1 rounded-full transition-all duration-300"
+              style="background-color:#C0F000;color:#1E1E1E;"
+            >
+              {tag}
+            </span>
+          ))
         }
       </div>
     </div>
   </div>
 </a>
+
+<style>
+  /* Hover overlay image */
+  a.group:hover .absolute.inset-0 {
+    background-color: rgba(192, 240, 0, 0.12);
+  }
+
+  /* Hover title */
+  a.group:hover h3 {
+    color: #c0f000;
+  }
+</style>

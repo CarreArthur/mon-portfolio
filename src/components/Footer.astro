@@ -5,16 +5,28 @@ import { Linkedin } from "lucide-astro";
 const cvPath = "/Cv-Arthur.pdf";
 ---
 
-<footer class="bg-[#E0FF4F] text-[#00272B] font-sans flex flex-col mt-auto">
-  <div class="flex flex-col items-center justify-center py-16 px-4 gap-8">
-    <div class="text-3xl md:text-4xl font-black uppercase">ARTHUR CARRÉ</div>
+<footer class="relative w-full mt-auto overflow-hidden">
+  {/* Fond comme le header */}
+  <div
+    class="absolute inset-0 bg-[#C0F000] border-t border-theme-10 shadow-sm z-0"
+  >
+  </div>
+
+  <div
+    class="relative z-10 flex flex-col items-center justify-center py-16 px-6 md:px-12 gap-8"
+  >
+    <div
+      class="text-3xl md:text-4xl font-black uppercase title-font text-[#1E1E1E]"
+    >
+      ARTHUR CARRÉ
+    </div>
 
     <nav
       class="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-sm font-bold uppercase"
     >
       <a
-        href="/projets"
-        class="hover:opacity-60 transition-opacity duration-300 text-[#00272B]"
+        href="/work"
+        class="transition-all duration-300 text-[#1E1E1E] hover:opacity-80"
       >
         MES PROJETS
       </a>
@@ -22,9 +34,9 @@ const cvPath = "/Cv-Arthur.pdf";
       <a
         href={cvPath}
         download
-        class="border border-[#00272B] rounded-full px-4 py-2 transition-all duration-300 text-[#00272B] hover:bg-[#00272B] hover:text-[#E0FF4F]"
+        class="border bg-[#1E1E1E] text-[#FFFFFF] rounded-full px-4 py-2 hover:bg-[#1E1E1E] hover:text-[#FFFFFF] transition-all duration-300"
       >
-        MON CV
+        TÉLÉCHARGER MON CV
       </a>
     </nav>
 
@@ -32,14 +44,17 @@ const cvPath = "/Cv-Arthur.pdf";
       href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
       target="_blank"
       rel="noopener noreferrer"
-      class="hover:scale-110 transition-transform duration-300 text-[#00272B]"
+      class="hover:scale-110 transition-transform duration-300 text-[#1E1E1E]"
       aria-label="LinkedIn"
     >
-      <Linkedin />
+      <Linkedin class="w-10 h-10 text-[#1E1E1E]" stroke-width="1.5" />
     </a>
   </div>
 
-  <div class="bg-[#00272B] text-[#E0FF4F] py-4 text-center text-xs uppercase">
-    <p>© 2026 Arthur Carré — All Rights Reserved</p>
+  {/* Barre du bas dans le même esprit (même fond, séparation) */}
+  <div
+    class="relative z-10 border-t border-theme-10 bg-[#1E1E1E] text-[#FFFFFF] py-4 text-center text-xs uppercase"
+  >
+    <p>© 2026 Arthur Carré — Tous droits réservés</p>
   </div>
 </footer>

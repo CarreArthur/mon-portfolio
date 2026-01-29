@@ -45,21 +45,27 @@ const marketingImage =
           <h1
             class="text-6xl sm:text-7xl md:text-8xl lg:text-[11vw] font-bold title-font uppercase leading-[0.9] md:leading-[0.85] select-none pl-4 md:pl-[5vw] text-title/40 transition-colors duration-300 group-hover:text-title/80 origin-bottom-left"
           >
-            <span class="text-[#E0FF4F]">&</span> Marketing
+            {/* Empêche le & de passer seul à la ligne */}
+            <span class="inline-flex items-baseline whitespace-nowrap">
+              <span class="text-[#C0F000]">&</span>
+              <span class="ml-2">Marketing</span>
+            </span>
           </h1>
         </div>
       </div>
     </div>
 
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 border-t border-theme-10 pt-8 pb-2 items-center w-full opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"
+      class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 border-t pt-8 pb-2 items-center w-full opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"
+      style="border-top-color:#1E1E1E;"
     >
       <div
         class="col-span-1 lg:col-span-8 flex flex-col sm:flex-row gap-8 sm:gap-16"
       >
         <div class="flex items-center gap-4 group/item">
           <div
-            class="p-3 rounded-full bg-accent-10 text-title group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+            class="p-3 rounded-full group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+            style="background-color:#C0F000;color:#1E1E1E;"
           >
             <School class="w-5 h-5 md:w-6 md:h-6" />
           </div>
@@ -73,7 +79,8 @@ const marketingImage =
 
         <div class="flex items-center gap-4 group/item">
           <div
-            class="p-3 rounded-full bg-accent-10 text-title group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+            class="p-3 rounded-full group-hover/item:scale-110 transition-transform duration-300 shrink-0"
+            style="background-color:#C0F000;color:#1E1E1E;"
           >
             <Briefcase class="w-5 h-5 md:w-6 md:h-6" />
           </div>
@@ -95,7 +102,8 @@ const marketingImage =
         >
           Mes projets
           <span
-            class="bg-accent-10 text-title rounded-full p-2.5 group-hover:bg-[#E0FF4F] group-hover:text-[#00272B] group-hover:rotate-[-45deg] transition-all duration-300"
+            class="rounded-full p-2.5 group-hover:bg-[#E0FF4F] group-hover:text-[#00272B] group-hover:rotate-[-45deg] transition-all duration-300"
+            style="background-color:#C0F000;color:#1E1E1E;"
           >
             <CircleArrowRight class="w-4 h-4" />
           </span>
@@ -112,10 +120,10 @@ const marketingImage =
   const titles = document.querySelectorAll(".hero-line h1");
 
   gsap.from(titles, {
-    y: "120%", // Descend le texte hors de son conteneur (masqué par overflow-hidden)
-    skewY: 7, // Ajoute une inclinaison stylée
+    y: "120%",
+    skewY: 7,
     duration: 1.5,
-    stagger: 0.15, // Délai entre le premier et le deuxième titre
+    stagger: 0.15,
     ease: "power4.out",
   });
   // -------------------------------------
