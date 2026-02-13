@@ -12,7 +12,7 @@ import Escape2 from "../images/Escape2.png";
 import Escape3 from "../images/Escape3.png";
 
 import RCLensLogo from "../images/Rc-Lens.png";
-import IUTLogo from "../images/IUT.jpg";
+import IUTLogo from "../images/IUT.png";
 
 import VuejsIcon from "../images/Vuejs.png";
 import TailwindIcon from "../images/Tailwind.png";
@@ -23,6 +23,12 @@ import IllustratorIcon from "../images/Logo-Illustrator.png";
 
 import ReactIcon from "../images/React.png";
 import GsapIcon from "../images/Gsap.png";
+
+import TerreEclat from "../images/accueil.png";
+import TerreEclat2 from "../images/produit.png";
+import CoverTerreEclat from "../images/cover-terre-eclat.png";
+
+import FigmaIcon from "../images/figma.png";
 
 export const projects = [
   { 
@@ -91,6 +97,30 @@ En parallèle, j’ai développé une interface d’administration simplifiée p
     technologies: [
       { name: "React", icon: ReactIcon },
       { name: "GSAP", icon: GsapIcon }
+    ]
+  },
+  { 
+    slug: "terre-eclat",
+    title: "Terre-Éclat", 
+    category: "Design Web", 
+    year: "2025", 
+    client: "IUT de Lens",
+    clientLogo: IUTLogo,
+    role: "Designer Web",
+    website: "https://www.figma.com/proto/ZFNXwjiYYagIXCz0zeEUcL/Carr%C3%A9-Arthur-Terre-%C3%89clat?page-id=1%3A3&node-id=1-4&viewport=553%2C158%2C0.14&t=HbAzBd1LJklHhUHI-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A4",
+    description: `Dans le cadre de ma formation en Design Web 2025/2026 à l'IUT de Lens, j'ai conçu l'interface complète d'une marque fictive de céramiques haut de gamme nommée Terre-Éclat. L'objectif était de créer les maquettes d'une homepage et d'une page produit en transformant des wireframes imposés en maquettes.
+
+J'ai commencé par développer une identité visuelle cohérente en définissant la charte graphique, les couleurs et les typographies à partir du logo et des visuels fournis. J'ai ensuite réinterprété librement la structure des wireframes pour proposer une navigation plus rythmée et immersive, tout en veillant à valoriser la collection des produits.
+
+L'ergonomie est restée au cœur de mes préoccupations tout au long du projet. J'ai finalisé le travail en réalisant un prototype navigable sur Figma intégrant des animations fluides. Les livrables finaux comprennent des maquettes desktop au format 1440px ainsi qu'un prototype interactif.`,
+    tags: ["UX/UI", "Maquettage", "Figma"], 
+    cover: CoverTerreEclat,
+    gallery: [
+      TerreEclat,
+      TerreEclat2
+    ],
+    technologies: [
+      { name: "Figma", icon: FigmaIcon }
     ]
   },
 ];

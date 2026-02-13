@@ -36,8 +36,9 @@ const { project } = Astro.props;
                 src={project.clientLogo}
                 alt={project.client}
                 height={32}
+                width={32}
                 loading="lazy"
-                class="h-8 w-auto object-contain opacity-90"
+                class="w-8 h-8 object-contain "
               />
             ) : (
               <p style="color:#1E1E1E;">{project.client}</p>
@@ -103,7 +104,7 @@ const { project } = Astro.props;
               target="_blank"
               rel="noreferrer noopener"
               class="inline-flex items-center gap-2 text-xs font-bold uppercase title-font px-4 py-2 rounded-full transition-colors mb-8"
-              style="background-color:#C0F000;color:#1E1E1E;"
+              style="background-color:#1030E0;color:#FFFFFF;"
             >
               Voir le projet en ligne
             </a>
@@ -129,7 +130,7 @@ const { project } = Astro.props;
                       width={32}
                       height={32}
                       loading="lazy"
-                      class="w-8 h-8 object-contain opacity-70 transition-opacity duration-200"
+                      class="w-8 h-8 object-contain"
                     />
                     <span class="tech-label">{tech.name}</span>
                   </div>
@@ -182,7 +183,7 @@ const { project } = Astro.props;
     bottom: 0px;
     width: 100%;
     height: 2px;
-    background: #c0f000;
+    background: #1030e0;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 260ms ease;
@@ -214,10 +215,6 @@ const { project } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .tech:hover img {
-    opacity: 1;
   }
 
   .tech-label {
@@ -277,7 +274,7 @@ const { project } = Astro.props;
     bottom: 0px;
     width: 100%;
     height: 2px;
-    background: #c0f000;
+    background: #1030e0;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 260ms ease;

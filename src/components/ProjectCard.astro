@@ -34,7 +34,7 @@ const { title, category, year, image, tags, slug } = Astro.props;
 
   <div
     class="flex flex-col gap-3 border-t pt-4"
-    style="border-top-color:#C0F000;"
+    style="border-top-color:#1030E0;"
   >
     <div class="flex justify-between items-start">
       <h3
@@ -46,7 +46,7 @@ const { title, category, year, image, tags, slug } = Astro.props;
 
       <span
         class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-        style="color:#C0F000;"
+        style="color:#1030E0;"
       >
         <MoveUpRight class="w-5 h-5" />
       </span>
@@ -70,7 +70,7 @@ const { title, category, year, image, tags, slug } = Astro.props;
           tags.slice(0, 3).map((tag) => (
             <span
               class="hidden md:inline-block text-[10px] uppercase -wider px-2 py-1 rounded-full transition-all duration-300"
-              style="background-color:#C0F000;color:#1E1E1E;"
+              style="background-color:#1030E0;color:white;"
             >
               {tag}
             </span>
@@ -89,6 +89,6 @@ const { title, category, year, image, tags, slug } = Astro.props;
 
   /* Hover title */
   a.group:hover h3 {
-    color: #c0f000;
+    color: #1030e0;
   }
 </style>
