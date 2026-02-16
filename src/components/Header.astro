@@ -8,7 +8,6 @@ const isActive = (path: string) => {
   return pathname.startsWith(path);
 };
 
-// ✅ CV accessible depuis /public
 const cvPath = "/Cv-Carre-Arthur.pdf";
 
 const navLinks = [
@@ -18,18 +17,18 @@ const navLinks = [
 ---
 
 <header
-  class="relative w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300 mix-blend-normal"
+  class="relative w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300"
   id="main-header"
 >
   <div
-    class="absolute inset-0 bg-[#2F5D62] border-b border-white/10 shadow-sm z-0"
+    class="absolute inset-0 bg-[#2F5D62] border-b border-[#E7DED9]/10 shadow-sm z-0"
   >
   </div>
 
   <div class="z-50 relative">
     <a
       href="/"
-      class="text-2xl font-bold title-font uppercase -tighter leading-none group text-white transition-transform duration-300 hover:scale-[1.02]"
+      class="text-2xl font-bold title-font uppercase leading-none group text-[#E7DED9] transition-transform duration-300 hover:scale-[1.02]"
     >
       Arthur Carré
     </a>
@@ -46,8 +45,8 @@ const navLinks = [
                 isActive(link.path) ? "is-active" : ""
               } ${
                 link.path === cvPath
-                  ? "border border-white/20 bg-white text-[#2F5D62] rounded-full px-5 py-2 hover:bg-[#2F5D62] hover:text-white"
-                  : "text-white"
+                  ? "border border-[#E7DED9]/20 bg-[#E7DED9] text-[#2F5D62] rounded-full px-5 py-2 hover:bg-[#2F5D62] hover:text-[#E7DED9]"
+                  : "text-[#E7DED9]"
               }`}
               download={link.path === cvPath}
             >
@@ -61,15 +60,14 @@ const navLinks = [
 
   <button
     id="burger-btn"
-    class="md:hidden z-50 relative group w-8 h-8 flex items-center justify-center cursor-pointer text-white transition-transform duration-300 hover:scale-110"
+    class="md:hidden z-50 relative group w-10 h-10 flex items-center justify-center cursor-pointer text-[#E7DED9]"
     aria-label="Menu"
   >
     <div class="icon-menu absolute inset-0 flex items-center justify-center">
       <Menu class="w-8 h-8" />
     </div>
-
     <div
-      class="icon-close absolute inset-0 flex items-center text-[#2F5D62] justify-center opacity-0 scale-50"
+      class="icon-close absolute inset-0 flex items-center justify-center opacity-0 scale-50 text-[#2F5D62]"
     >
       <X class="w-8 h-8" />
     </div>
@@ -77,25 +75,20 @@ const navLinks = [
 
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-theme z-40 flex flex-col items-center justify-between px-6 py-12 translate-x-full transition-none md:hidden"
+    class="fixed inset-0 bg-[#E7DED9] z-40 flex flex-col items-center justify-center px-6 translate-x-full md:hidden"
   >
-    <div class="flex-1"></div>
-
-    <nav
-      class="flex flex-col gap-10 w-full max-w-lg mx-auto justify-center items-center"
-    >
+    <nav class="flex flex-col gap-12 w-full items-center justify-center">
       {
         navLinks.map((link, index) => (
           <a
             href={link.path}
-            class="mobile-link group flex items-start gap-6 opacity-0 translate-y-10 w-full justify-center"
+            class="mobile-link group flex flex-col items-center justify-center opacity-0 translate-y-10 no-underline"
             download={link.path === cvPath}
           >
-            <span class="font-mono text-[#2F5D62] text-xl md:text-2xl mt-2 md:mt-4">
+            <span class="font-mono text-[#2F5D62] text-lg mb-2 opacity-70">
               0{index + 1}
             </span>
-
-            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#2F5D62] group-hover:text-[#2F5D62] transition-colors duration-300 whitespace-nowrap text-center">
+            <span class="text-[12vw] font-bold title-font uppercase leading-[0.9] text-[#2F5D62] text-center transition-transform duration-300 group-hover:scale-105">
               {link.label}
             </span>
           </a>
@@ -103,7 +96,7 @@ const navLinks = [
       }
     </nav>
 
-    <div class="flex-1 flex items-end justify-center w-full pb-8">
+    <div class="absolute bottom-12 w-full flex justify-center">
       <a
         href="https://www.linkedin.com/in/arthur-carr%C3%A9-1b63aa307/"
         target="_blank"
@@ -122,7 +115,6 @@ const navLinks = [
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileLinks = document.querySelectorAll(".mobile-link");
   const socialLink = document.querySelector(".social-link");
-
   const iconMenu = burgerBtn?.querySelector(".icon-menu");
   const iconClose = burgerBtn?.querySelector(".icon-close");
 
@@ -132,68 +124,72 @@ const navLinks = [
     isMenuOpen = !isMenuOpen;
 
     if (isMenuOpen) {
-      // --- OUVERTURE ---
-      if (iconMenu && iconClose) {
+      // Animation Icons
+      if (iconMenu)
         gsap.to(iconMenu, {
           opacity: 0,
           rotation: 90,
           scale: 0.5,
           duration: 0.3,
         });
+      if (iconClose)
         gsap.to(iconClose, {
           opacity: 1,
           rotation: 0,
           scale: 1,
           duration: 0.3,
         });
-      }
 
-      gsap.to(mobileMenu, { x: "0%", duration: 0.5, ease: "power3.inOut" });
+      // Menu Slide
+      if (mobileMenu)
+        gsap.to(mobileMenu, { x: "0%", duration: 0.6, ease: "expo.out" });
 
-      gsap.to(mobileLinks, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        delay: 0.2,
-        ease: "power2.out",
-      });
+      // Links Stagger
+      if (mobileLinks.length)
+        gsap.to(mobileLinks, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          delay: 0.2,
+          ease: "power3.out",
+        });
 
-      if (socialLink) {
+      if (socialLink)
         gsap.to(socialLink, {
           opacity: 1,
           y: 0,
           duration: 0.5,
-          delay: 0.4,
+          delay: 0.5,
           ease: "back.out(1.7)",
         });
-      }
 
       document.body.style.overflow = "hidden";
     } else {
-      // --- FERMETURE ---
-      if (iconMenu && iconClose) {
+      if (iconMenu)
         gsap.to(iconMenu, { opacity: 1, rotation: 0, scale: 1, duration: 0.3 });
+      if (iconClose)
         gsap.to(iconClose, {
           opacity: 0,
           rotation: -90,
           scale: 0.5,
           duration: 0.3,
         });
-      }
 
-      gsap.to(mobileMenu, { x: "100%", duration: 0.5, ease: "power3.inOut" });
-
-      gsap.to(mobileLinks, { opacity: 0, y: 10, duration: 0.2 });
-
-      if (socialLink) {
-        gsap.to(socialLink, { opacity: 0, y: 10, duration: 0.2 });
-      }
+      if (mobileMenu)
+        gsap.to(mobileMenu, { x: "100%", duration: 0.5, ease: "power3.in" });
+      if (mobileLinks.length || socialLink)
+        gsap.to([mobileLinks, socialLink], {
+          opacity: 0,
+          y: 20,
+          duration: 0.2,
+        });
 
       document.body.style.overflow = "";
     }
   });
 
+  // Fermer le menu au clic sur un lien
   mobileLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (isMenuOpen) burgerBtn?.click();
@@ -202,77 +198,45 @@ const navLinks = [
 </script>
 
 <style>
-  /* Hover UX/UI des liens desktop (underline animé) */
+  /* --- Desktop Links --- */
   .nav-link {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    transform: translateZ(0);
   }
 
-  .nav-link::after {
+  .nav-link:not(.border)::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -8px;
-    height: 3px;
+    bottom: -6px;
+    height: 2px;
     width: 100%;
-    background: white;
+    background: #e7ded9;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 300ms ease;
-    border-radius: 999px;
-    opacity: 0.9;
+    transition: transform 0.3s ease;
   }
 
-  .nav-link:hover::after {
+  .nav-link:not(.border):hover::after,
+  .nav-link.is-active:not(.border)::after {
     transform: scaleX(1);
   }
 
-  /* Petit effet "lift" au hover */
-  .nav-link:hover {
-    transform: translateY(-2px);
-  }
-
-  /* État actif: underline visible */
-  .nav-link.is-active::after {
-    transform: scaleX(1);
-  }
-
-  /* ----------------------------- */
-  /* MON CV : hover plus discret   */
-  /* ----------------------------- */
-
-  /* Pas d'underline animé pour le bouton CV */
-  .nav-link.border::after,
-  .nav-link.border:hover::after,
-  .nav-link.border.is-active::after {
-    display: none;
-  }
-
-  /* Pas de "lift" global sur le bouton CV */
-  .nav-link.border:hover {
-    transform: none;
-  }
-
-  /* Remplace par un effet subtil */
+  /* --- CV Button Styles --- */
   .nav-link.border {
-    box-shadow: none;
-    transition:
-      background-color 200ms ease,
-      filter 200ms ease,
-      opacity 200ms ease;
+    transition: all 0.3s ease;
   }
 
   .nav-link.border:hover {
-    background-color: #2a2a2a;
-    filter: brightness(1.05);
+    background-color: #e7ded9;
+    color: #2f5d62;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  /* Focus clavier propre */
-  .nav-link.border:focus-visible {
-    outline: 2px solid rgba(192, 240, 0, 0.9);
-    outline-offset: 3px;
+  /* --- Utilities --- */
+  .title-font {
+    letter-spacing: -0.02em;
   }
 </style>
