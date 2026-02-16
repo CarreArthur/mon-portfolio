@@ -19,13 +19,13 @@ const { project } = Astro.props;
       class="px-6 md:px-12 pt-32 md:pt-48 pb-12 border-b border-theme-10"
     >
       <h1
-        class="text-[10vw] font-bold title-font uppercase leading-[0.85] -tighter mb-12"
-        style="color:#1E1E1E;"
+        class="text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-bold title-font uppercase leading-[0.85] -tighter mb-12"
+        style="color:#403A37;"
       >
         {project.title}
       </h1>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-base">
         <div>
           <p class="uppercase text-xs mb-2" style="color: rgba(30,30,30,0.6);">
             Client
@@ -41,7 +41,7 @@ const { project } = Astro.props;
                 class="w-8 h-8 object-contain "
               />
             ) : (
-              <p style="color:#1E1E1E;">{project.client}</p>
+              <p style="color:#403A37;">{project.client}</p>
             )
           }
         </div>
@@ -50,14 +50,14 @@ const { project } = Astro.props;
           <p class="uppercase text-xs mb-2" style="color: rgba(30,30,30,0.6);">
             Rôle
           </p>
-          <p style="color:#1E1E1E;">{project.role}</p>
+          <p style="color:#403A37;">{project.role}</p>
         </div>
 
         <div>
           <p class="uppercase text-xs mb-2" style="color: rgba(30,30,30,0.6);">
             Année
           </p>
-          <p style="color:#1E1E1E;">{project.year}</p>
+          <p style="color:#403A37;">{project.year}</p>
         </div>
 
         {
@@ -74,7 +74,7 @@ const { project } = Astro.props;
                 target="_blank"
                 rel="noreferrer noopener"
                 class="project-link inline-flex items-center gap-2 text-xs font-semibold uppercase"
-                style="color:#1E1E1E;"
+                style="color:#403A37;"
               >
                 Voir le projet <span class="arrow">→</span>
               </a>
@@ -86,13 +86,16 @@ const { project } = Astro.props;
 
     <section class="px-6 md:px-12 py-12 md:py-24 grid md:grid-cols-12 gap-12">
       <div class="md:col-span-4 h-fit md:sticky md:top-32">
-        <h2 class="text-xs uppercase mb-6 title-font" style="color:#1E1E1E;">
+        <h2
+          class="text-2xl md:text-[32px] uppercase mb-6 title-font font-bold"
+          style="color:#403A37;"
+        >
           À propos du projet
         </h2>
 
         <p
-          class="text-xl leading-relaxed font-medium mb-8"
-          style="color:#1E1E1E;"
+          class="text-base md:text-xl leading-relaxed font-medium mb-8"
+          style="color:#403A37;"
         >
           {project.description}
         </p>
@@ -104,7 +107,7 @@ const { project } = Astro.props;
               target="_blank"
               rel="noreferrer noopener"
               class="inline-flex items-center gap-2 text-xs font-bold uppercase title-font px-4 py-2 rounded-full transition-colors mb-8"
-              style="background-color:#1030E0;color:#FFFFFF;"
+              style="background-color:#2F5D62;color:#FFFFFF;"
             >
               Voir le projet en ligne
             </a>
@@ -115,8 +118,8 @@ const { project } = Astro.props;
           project.technologies && project.technologies.length > 0 && (
             <div class="mb-12">
               <h3
-                class="text-xs uppercase mb-4 title-font"
-                style="color:#1E1E1E;"
+                class="text-xl uppercase mb-4 title-font font-bold"
+                style="color:#403A37;"
               >
                 Technologies
               </h3>
@@ -142,8 +145,8 @@ const { project } = Astro.props;
 
         <a
           href="/work"
-          class="back-link block text-xs uppercase font-bold title-font w-fit"
-          style="color:#1E1E1E;"
+          class="back-link block text-base uppercase font-bold title-font w-fit"
+          style="color:#403A37;"
         >
           ← Retour aux projets
         </a>
@@ -183,7 +186,7 @@ const { project } = Astro.props;
     bottom: 0px;
     width: 100%;
     height: 2px;
-    background: #1030e0;
+    background: #2f5d62;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 260ms ease;
@@ -225,7 +228,7 @@ const { project } = Astro.props;
     white-space: nowrap;
     padding: 6px 10px;
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -274,7 +277,7 @@ const { project } = Astro.props;
     bottom: 0px;
     width: 100%;
     height: 2px;
-    background: #1030e0;
+    background: #2f5d62;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 260ms ease;

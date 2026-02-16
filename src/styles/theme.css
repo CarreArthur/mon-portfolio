@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700&display=swap');
 
 :root{
-  --color-bg:#FFFFFF;
-  --color-title:#1E1E1E;
-  --color-text:#1E1E1E;
+  --color-bg:#E7DED9;
+  --color-title:#403A37;
+  --color-text:#403A37;
 
   /* RGB variants for transparencies */
   --color-bg-rgb: 0, 39, 43;

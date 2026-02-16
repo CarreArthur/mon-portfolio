@@ -22,21 +22,21 @@ const navLinks = [
   id="main-header"
 >
   <div
-    class="absolute inset-0 bg-[#1030E0] border-b border-white/10 shadow-sm z-0"
+    class="absolute inset-0 bg-[#2F5D62] border-b border-white/10 shadow-sm z-0"
   >
   </div>
 
   <div class="z-50 relative">
     <a
       href="/"
-      class="text-xl font-bold title-font uppercase -tighter leading-none group text-white transition-transform duration-300 hover:scale-[1.02]"
+      class="text-2xl font-bold title-font uppercase -tighter leading-none group text-white transition-transform duration-300 hover:scale-[1.02]"
     >
       Arthur Carré
     </a>
   </div>
 
   <nav class="hidden md:block z-50 relative">
-    <ul class="flex items-center gap-10 text-sm font-bold uppercase">
+    <ul class="flex items-center gap-10 text-base font-bold uppercase">
       {
         navLinks.map((link) => (
           <li class="flex items-center">
@@ -46,7 +46,7 @@ const navLinks = [
                 isActive(link.path) ? "is-active" : ""
               } ${
                 link.path === cvPath
-                  ? "border border-white/20 bg-white text-[#1030E0] rounded-full px-5 py-2 hover:bg-[#1030E0] hover:text-white"
+                  ? "border border-white/20 bg-white text-[#2F5D62] rounded-full px-5 py-2 hover:bg-[#2F5D62] hover:text-white"
                   : "text-white"
               }`}
               download={link.path === cvPath}
@@ -69,7 +69,7 @@ const navLinks = [
     </div>
 
     <div
-      class="icon-close absolute inset-0 flex items-center text-[#1030E0] justify-center opacity-0 scale-50"
+      class="icon-close absolute inset-0 flex items-center text-[#2F5D62] justify-center opacity-0 scale-50"
     >
       <X class="w-8 h-8" />
     </div>
@@ -91,11 +91,11 @@ const navLinks = [
             class="mobile-link group flex items-start gap-6 opacity-0 translate-y-10 w-full justify-center"
             download={link.path === cvPath}
           >
-            <span class="font-mono text-[#1030E0] text-lg md:text-xl mt-2 md:mt-4">
+            <span class="font-mono text-[#2F5D62] text-xl md:text-2xl mt-2 md:mt-4">
               0{index + 1}
             </span>
 
-            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#1030E0] group-hover:text-[#1030E0] transition-colors duration-300 whitespace-nowrap text-center">
+            <span class="text-[13vw] font-bold title-font uppercase -tighter leading-[0.85] text-[#2F5D62] group-hover:text-[#2F5D62] transition-colors duration-300 whitespace-nowrap text-center">
               {link.label}
             </span>
           </a>
@@ -109,7 +109,7 @@ const navLinks = [
         target="_blank"
         class="social-link opacity-0 translate-y-4 transition-all duration-300 hover:scale-110"
       >
-        <Linkedin class="w-10 h-10 text-[#1030E0]" stroke-width="1.5" />
+        <Linkedin class="w-10 h-10 text-[#2F5D62]" stroke-width="1.5" />
       </a>
     </div>
   </div>
